@@ -67,7 +67,7 @@ class CssSourceContractTests(unittest.TestCase):
         )
         self.assertEqual(
             re.findall(r"@media \(min-width: ([0-9]+px)\)", responsive),
-            [values["breakpoint-compact"], values["breakpoint-contact"], values["breakpoint-layout"]],
+            [values["breakpoint-compact"], values["breakpoint-contact"], values["breakpoint-layout"], "1680px"],
         )
         self.assertNotIn("@media (max-width:", responsive)
         for path in STYLES.rglob("*.css"):
@@ -80,7 +80,8 @@ class CssSourceContractTests(unittest.TestCase):
         components = (STYLES / "components.css").read_text(encoding="utf-8")
         self.assertIn('grid-template-areas: "projects skills" "experience experience";', responsive)
         self.assertIn("#experience .timeline { grid-template-columns: repeat(2,minmax(0,1fr));", responsive)
-        self.assertIn(".chat-launcher { right: 18px; bottom: 18px; }", responsive)
+        self.assertIn(".chat-launcher { position: fixed; right: 18px; bottom: 18px;", responsive)
+        self.assertIn("max-width: calc((100% - var(--maxw)) / 2 - 36px)", responsive)
         self.assertNotIn('content: "AI"', responsive)
         self.assertIn(".project-entry.primary:hover { background: var(--surface-2); }", components)
 

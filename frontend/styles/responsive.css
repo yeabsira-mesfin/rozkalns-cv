@@ -14,7 +14,7 @@
   .actions { align-items: center; }
   .contact-reveal { width: fit-content; }
   .turnstile-mount { width: 300px; }
-  .chat-launcher { right: 22px; bottom: 22px; }
+  .chat-launcher { margin: 0 22px 22px auto; }
   .dialog-backdrop { padding: 22px; }
 }
 @media (min-width: 900px) {
@@ -58,6 +58,12 @@
   #experience { grid-area: experience; }
   #skills .section-heading, #experience .section-heading { margin-block-end: 14px; }
   #experience .timeline { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 30px; }
-  .chat-launcher { right: 18px; bottom: 18px; }
+  .chat-launcher { margin-inline-end: max(20px,calc((100% - var(--maxw)) / 2)); margin-block-end: 18px; }
   .education-list { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0 24px; }
+}
+/* 1180px CV + two 250px gutters: room for every full localized label,
+   the 18px edge inset, and clearance. Bound the button to the actual gutter
+   as well, so larger text wraps toward the viewport edge, not over the CV. */
+@media (min-width: 1680px) {
+  .chat-launcher { position: fixed; right: 18px; bottom: 18px; max-width: calc((100% - var(--maxw)) / 2 - 36px); margin: 0; }
 }
